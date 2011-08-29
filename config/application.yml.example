@@ -1,0 +1,7 @@
+defaults: &defaults
+  twilio:
+    account_sid: ACXXXXXXXXXXXXXXXXXXXXXXXX
+    auth_token:  XXXXXXXXXXXXXXXXXXXXXXXXXX
+
+development:
+  <<: *defaults

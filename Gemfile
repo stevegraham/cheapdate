@@ -1,6 +1,8 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.10'
+gem 'twilio-rb', git: 'git://github.com/stevegraham/twilio-rb'
+gem 'settingslogic'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
