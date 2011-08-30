@@ -1,5 +1,3 @@
 class TwilioController < ApplicationController
-  def handler
-
-  end
+  skip_before_filter :authenticate
 end
