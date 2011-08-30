@@ -1,0 +1,44 @@
+= form_tag('#', id: 'dialler') do
+  = phone_field_tag 'number'
+  = submit_tag 'Call', id: 'dial'
+  = submit_tag 'Hangup', id: 'hangup', style: 'display:none;'
+
+= content_for :javascript do
+  :javascript
+    $(document).ready(function() {
+      Twilio.Device.setup("#{@capability_token}")
+
+      Twilio.Device.disconnect(function(connection) {
+        $('#hangup').hide()
+        $('#dial').show()
+      })
+
+      $('#dialler').submit(function(ev) {
+        ev.stopImmediatePropagation()
+        ev.preventDefault()
+      })
+
+      $('#number').click(function(ev) {
+        $(this).val(null)
+      })
+
+      $('#dial').click(function(ev) {
+        var number = $('#number').val()
+        if(number.match(/\+?\d{10,}/)) {
+          Twilio.Device.connect({ 'phone_number' : number })
+          $(this).hide()
+          $('#hangup').show()
+        } else {
+          alert('Please enter a legit phone number.')
+        }
+        ev.stopImmediatePropagation()
+        ev.preventDefault()
+      })
+
+      $('#hangup').click(function(ev) {
+        Twilio.Device.disconnectAll()
+        ev.stopImmediatePropagation()
+        ev.preventDefault()
+      })
+
+    })

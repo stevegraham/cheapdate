@@ -1,0 +1,17 @@
+!!!
+%html
+  %head
+    %title
+      CheapDate &mdash; Call your old lady back home using Twilio's LOW LOW international rates!
+    = stylesheet_link_tag :all
+    = javascript_include_tag :defaults
+    = javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js'
+    = javascript_include_tag 'http://static.twilio.com/libs/twiliojs/1.0/twilio.min.js'
+    = csrf_meta_tag
+  %body
+    %header
+      %h1
+        = link_to 'CheapDate', root_path
+    = yield
+    = yield :javascript
+
