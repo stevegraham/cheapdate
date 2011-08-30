@@ -1,0 +1,83 @@
+/* @override http://127.0.0.1:3000/stylesheets/screen.css?1314729861 */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font: 13px/1.5 "Lucida Grande", Lucida, Verdana, sans-serif;
+  color: #fff;
+  background-color: #525252;
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.21, #525252),
+    color-stop(0.61, #363636),
+    color-stop(0.81, #2E2E2E)
+  );
+  background-image: -moz-linear-gradient(
+    center bottom,
+    #525252 21%,
+    #363636 61%,
+    #2E2E2E 81%
+  );
+  background-repeat: no-repeat;
+  cursor: default;
+  margin: 10px;
+  min-width: 600px;
+}
+
+header {
+  margin: 5px;
+}
+
+h1 {
+  font: normal 36px "Helvetica Neue", Helvetica, Geneva, sans-serif;
+  text-transform: lowercase;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.75);
+  margin: 0 0 20px;
+  color: rgba(0,0,0,0.6);
+  text-shadow: 0 1px 1px rgba(255,255,255,0.2);
+}
+
+#number {
+  font-size: 200%;
+  padding: 5px;
+  width: 500px;
+  border: 2px solid #fff;
+}
+
+#dial, #hangup {
+  background-color: #eeeeee;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#cccccc));
+  /* Saf4+, Chrome */
+  background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: linear-gradient(top, #eeeeee, #cccccc);
+  border: 1px solid #ccc;
+  border-bottom: 1px solid #bbb;
+  -webkit-border-radius-topright: 12px;
+  -webkit-border-radius-bottomright: 12px;
+  -moz-border-radius-topright: 12px;
+  -moz-border-radius-bottomright: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  color: #333;
+  font: 22px "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+  line-height: 1;
+  padding: 10px 0;
+  text-align: center;
+  text-shadow: 0 1px 0 #eee;
+  width: 120px;
+  left: -6px;
+  top: -2px;
+  position: relative;
+}
+
+
