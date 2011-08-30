@@ -2,7 +2,6 @@
 db/*.sqlite3
 log/*.log
 tmp/
-config/application.yml
 *.swn
 *.swp
 *.swo
