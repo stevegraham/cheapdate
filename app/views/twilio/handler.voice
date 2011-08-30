@@ -1,0 +1,5 @@
+res.pause '2'
+res.say 'Please wait while your call is connected.'
+res.dial do
+  res.number CGI.unescape(params['phone_number'])
+end
