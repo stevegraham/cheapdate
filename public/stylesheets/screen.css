@@ -1,4 +1,6 @@
-/* @override http://127.0.0.1:3000/stylesheets/screen.css?1314729861 */
+/* @override http://127.0.0.1:3000/stylesheets/screen.css?1314744739 */
+
+/* @override http://127.0.0.1:3000/stylesheets/screen.css?1314743570 */
 
 * {
   margin: 0;
@@ -42,6 +44,33 @@ h1 {
   text-shadow: 0 1px 1px rgba(255,255,255,0.2);
 }
 
+table {
+	width: 630px;
+	margin: 20px 0;
+}
+
+table * {
+	color: rgba(220,220,220,1);
+  	text-shadow: 0 -1px -1px rgba(0,0,0,1);
+}
+
+table a {
+	color: #f9f;
+}
+
+table td {
+	text-align: center;
+	padding-top: 4px;
+}
+
+table td:first-child {
+	text-align: left;
+}
+#activity_indicator {
+	top: 5px;
+	position: relative;
+}
+
 #number {
   font-size: 200%;
   padding: 5px;
@@ -79,5 +108,8 @@ h1 {
   top: -2px;
   position: relative;
 }
+
+
+
 
 

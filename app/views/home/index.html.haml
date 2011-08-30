@@ -2,6 +2,24 @@
   = phone_field_tag 'number'
   = submit_tag 'Call', id: 'dial'
   = submit_tag 'Hangup', id: 'hangup', style: 'display:none;'
+  = image_tag  'ajax-loader.gif', id: 'activity_indicator', style: 'display:none'
+
+%table
+  %thead
+    %tr
+      %th Telephone Number
+      %th Time
+      %th Duration
+      %th Cost
+  %tbody
+    - @recent_calls.select { |call| call.direction == "outbound-dial" }.each do |call|
+      %tr
+        %td
+          = link_to call.to, '#', class: 'number'
+        - minutes = call.duration.to_i / 60
+        %td= Time.parse(call.start_time).strftime '%R'
+        %td= "#{'%02d' % minutes}:#{'%02d' % (call.duration.to_i - minutes * 60)}"
+        %td= "$#{call.price ? call.price[1,4] : '0.00'}"
 
 = content_for :javascript do
   :javascript
@@ -11,6 +29,12 @@
       Twilio.Device.disconnect(function(connection) {
         $('#hangup').hide()
         $('#dial').show()
+      })
+
+      Twilio.Device.connect(function(connection) {
+        $('#dial').hide()
+        $('#hangup').show()
+        $('#activity_indicator').hide()
       })
 
       $('#dialler').submit(function(ev) {
@@ -25,9 +49,8 @@
       $('#dial').click(function(ev) {
         var number = $('#number').val()
         if(number.match(/\+?\d{10,}/)) {
+          $('#activity_indicator').show()
           Twilio.Device.connect({ 'phone_number' : number })
-          $(this).hide()
-          $('#hangup').show()
         } else {
           alert('Please enter a legit phone number.')
         }
@@ -39,6 +62,13 @@
         Twilio.Device.disconnectAll()
         ev.stopImmediatePropagation()
         ev.preventDefault()
+      })
+
+      $('table a').click(function(ev) {
+        var number = $(this).text()
+        $('#activity_indicator').show()
+        $('#number').val(number)
+        Twilio.Device.connect({ 'phone_number' : number })
       })
 
     })
