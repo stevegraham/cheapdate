@@ -5,3 +5,5 @@ tmp/
 *.swn
 *.swp
 *.swo
+.DS_Store
+config/application.yml
