@@ -23,52 +23,71 @@
 
 = content_for :javascript do
   :javascript
-    $(document).ready(function() {
-      Twilio.Device.setup("#{@capability_token}")
+    (function() {
+      var keymap = {
+        48 : '0',
+        49 : '1',
+        50 : '2',
+        51 : '3',
+        52 : '4',
+        53 : '5',
+        54 : '6',
+        55 : '7',
+        56 : '8',
+        57 : '9'
+      }
 
-      Twilio.Device.disconnect(function(connection) {
-        $('#hangup').hide()
-        $('#dial').show()
-      })
+      $(document).ready(function() {
+        Twilio.Device.setup("#{@capability_token}")
 
-      Twilio.Device.connect(function(connection) {
-        $('#dial').hide()
-        $('#hangup').show()
-        $('#activity_indicator').hide()
-      })
+        Twilio.Device.disconnect(function(connection) {
+          $('#hangup').hide()
+          $('#dial').show()
+          $(document).unbind('keypress')
+        })
 
-      $('#dialler').submit(function(ev) {
-        ev.stopImmediatePropagation()
-        ev.preventDefault()
-      })
+        Twilio.Device.connect(function(connection) {
+          $('#dial').hide()
+          $('#hangup').show()
+          $('#activity_indicator').hide()
+          $(document).keypress(function(ev) {
+            connection.sendDigits(keymap[ev.which])
+          })
+        })
 
-      $('#number').focus(function(ev) {
-        $(this).val(null)
-      })
+        $('#dialler').submit(function(ev) {
+          ev.stopImmediatePropagation()
+          ev.preventDefault()
+        })
 
-      $('#dial').click(function(ev) {
-        var number = $('#number').val()
-        if(number.match(/\+?\d{10,}/)) {
+        $('#number').focus(function(ev) {
+          $(this).val(null)
+        })
+
+        $('#dial').click(function(ev) {
+          var number = $('#number').val()
+          if(number.match(/\+?\d{10,}/)) {
+            $('#activity_indicator').show()
+            Twilio.Device.connect({ 'phone_number' : number })
+          } else {
+            alert('Please enter a legit phone number.')
+          }
+          ev.stopImmediatePropagation()
+          ev.preventDefault()
+        })
+
+        $('#hangup').click(function(ev) {
+          Twilio.Device.disconnectAll()
+          ev.stopImmediatePropagation()
+          ev.preventDefault()
+        })
+
+        $('table a').click(function(ev) {
+          var number = $(this).text()
           $('#activity_indicator').show()
+          $('#number').val(number)
           Twilio.Device.connect({ 'phone_number' : number })
-        } else {
-          alert('Please enter a legit phone number.')
-        }
-        ev.stopImmediatePropagation()
-        ev.preventDefault()
-      })
+        })
 
-      $('#hangup').click(function(ev) {
-        Twilio.Device.disconnectAll()
-        ev.stopImmediatePropagation()
-        ev.preventDefault()
       })
-
-      $('table a').click(function(ev) {
-        var number = $(this).text()
-        $('#activity_indicator').show()
-        $('#number').val(number)
-        Twilio.Device.connect({ 'phone_number' : number })
-      })
-
-    })
+    })()

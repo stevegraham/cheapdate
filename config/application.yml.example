@@ -2,9 +2,13 @@ defaults: &defaults
   twilio:
     account_sid: ACXXXXXXXXXXXXXXXXXXXXXXXX
     auth_token:  XXXXXXXXXXXXXXXXXXXXXXXXXX
+    app_sid:     APXXXXXXXXXXXXXXXXXXXXXXXX
   user:
     email:       you@example.com
     password:    password123
+    caller_id:   '+12125551234'
 
 development:
+  <<: *defaults
+production:
   <<: *defaults
