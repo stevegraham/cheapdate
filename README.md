@@ -9,8 +9,9 @@ Well, I'm based in London and working for Twilio as a Developer Evangelist I'm r
 P.S Twilio is hiring. It's an awesome place to work. [Come join us!](http://www.twilio.com/company/jobs)
 
 # Setup
-
-cp config/application.yml.example config/application.yml and change the values to those of your own
+- Create a new Heroku app.
+- Go to your Twilio dashboard and [create a new application](https://www.twilio.com/user/account/apps/add). Set the voice url to #{your_heroku_app_url}/twilio_handler.voice
+- cp config/application.yml.example config/application.yml and change the values to those of your own
 
 <pre>
 defaults: &defaults
@@ -29,6 +30,14 @@ production:
   <<: *defaults
 </pre>
 
-Add and commit that file, then deploy (I use heroku because it's easy and it's free).
+- Add and commit that file
+- git push heroku master
+- Open a browser and go to your app, enter the username and password you set in application.yml, and call the ol' lady.
+
+# Credits
+
+- Code by Stevie Graham
+- Awesome app name by [Rob Spectre](https://github.com/robspectre)
+
 
 &copy; 2011 Stevie Graham
